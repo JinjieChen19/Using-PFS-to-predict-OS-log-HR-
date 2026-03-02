@@ -5,7 +5,8 @@
 //            tau_os, tau_pfs ~ half-Normal;  rho via Fisher-z transform
 //   Level 2: Trial-specific effects theta_k ~ MVN(mu, Sigma)
 //            Non-centered parameterisation for efficient MCMC
-//   Level 1: Observed data  y_k ~ MVN(theta_k, W_k)
+//   Level 1: Likelihood  y_k ~ MVN(theta_k, W_k) where y_k are observed
+//            log(HR) pairs and W_k is the known within-trial covariance
 //
 // Priors are passed as data so the model does NOT need recompilation
 // when prior hyperparameters or computation settings change.

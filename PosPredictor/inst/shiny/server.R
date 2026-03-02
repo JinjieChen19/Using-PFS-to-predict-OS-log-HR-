@@ -3,25 +3,24 @@ library(ggplot2)
 library(MASS)
 library(DT)
 
-# Source package functions directly when run from inst/shiny/
-pkg_root <- tryCatch(
-  find.package("PosPredictor"),
-  error = function(e) NULL
-)
-if (!is.null(pkg_root)) {
-  # Running from installed package
+# Source package functions: use installed package namespace if available,
+# otherwise source R/ files relative to the shiny/ directory itself.
+pkg_available <- requireNamespace("PosPredictor", quietly = TRUE)
+if (pkg_available) {
   simulate_historical_data <- PosPredictor::simulate_historical_data
   compute_pos_closed_form  <- PosPredictor::compute_pos_closed_form
   compile_stan_model       <- PosPredictor::compile_stan_model
   load_stan_model          <- PosPredictor::load_stan_model
   compute_pos_mcmc         <- PosPredictor::compute_pos_mcmc
 } else {
-  # Fallback: source from package R/ directory
-  pkg_r_dir <- normalizePath(file.path(dirname(dirname(getwd())), "R"),
-                              mustWork = FALSE)
+  # Running from source: shiny/ is inside inst/shiny/, so R/ is two levels up
+  pkg_r_dir <- normalizePath(
+    file.path(dirname(sys.frame(1)$ofile), "..", "..", "R"),
+    mustWork = FALSE
+  )
   if (dir.exists(pkg_r_dir)) {
     for (f in list.files(pkg_r_dir, pattern = "\\.R$", full.names = TRUE)) {
-      source(f)
+      source(f, local = FALSE)
     }
   }
 }

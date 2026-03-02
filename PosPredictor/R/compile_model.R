@@ -46,7 +46,7 @@ compile_stan_model <- function(output_path = NULL, verbose = TRUE) {
     output_path <- file.path(dir_path, "compiled_model.rds")
   }
 
-  if (verbose) message("Compiling Stan model (this takes ~60-120 s the first time)...")
+  if (verbose) message("Compiling Stan model (this takes ~60-120 seconds the first time)...")
 
   boost_lib <- .find_boost_path()
   if (nchar(boost_lib)) {

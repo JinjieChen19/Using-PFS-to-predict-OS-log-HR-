@@ -1,6 +1,10 @@
 # Generated output
 *.png
 
+# R package build artifacts
+*.tar.gz
+*.Rcheck/
+
 # Python
 __pycache__/
 *.py[cod]
