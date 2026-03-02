@@ -1,0 +1,7 @@
+# Generated output
+*.png
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
