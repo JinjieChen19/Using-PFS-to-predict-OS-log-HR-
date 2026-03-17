@@ -1,0 +1,26 @@
+Package: PosPredictor
+Title: Posterior Probability of Success for OS Using PFS as Surrogate
+Version: 0.1.0
+Authors@R:
+    person("Author", "Name", email = "author@example.com",
+           role = c("aut", "cre"))
+Description: A Shiny application for computing the posterior Probability of
+    Success (PoS) using PFS log(HR) to predict OS log(HR) via a hierarchical
+    random-effects meta-analytic model. Supports both closed-form conjugate
+    multivariate-normal solutions and full Bayesian MCMC via Stan.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    shiny (>= 1.7.0),
+    ggplot2 (>= 3.4.0),
+    MASS (>= 7.3),
+    mvtnorm (>= 1.1),
+    DT (>= 0.20),
+    rstan (>= 2.21),
+    bayesplot (>= 1.10),
+    methods
+Suggests:
+    testthat (>= 3.0.0)
+SystemRequirements: Stan (https://mc-stan.org/)
